@@ -112,7 +112,7 @@ export default async function ProjectPage({ params }) {
       <nav className="nav">
         <div className="nav-in">
           <Link href="/" className="brand">
-            cindy muniz <span className="star">✦</span>
+            Cindy Muniz <span className="star">✦</span>
           </Link>
           <Link href="/#projects" className="back">
             <ArrowLeft size={15} /> Back to projects
