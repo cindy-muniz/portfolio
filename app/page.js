@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Mail, MapPin, ExternalLink, GraduationCap, Heart, Globe, FileText,
 } from "lucide-react";
@@ -259,6 +260,7 @@ export default function Home() {
                 <div className="plinks">
                   <a href="https://energyhack2026.onrender.com" target="_blank" rel="noopener noreferrer"><ExternalLink size={14} /> Live demo</a>
                   <a href="https://github.com/cindy-muniz/EnergyHack2026" target="_blank" rel="noopener noreferrer"><GithubIcon size={14} /> Code</a>
+                  <Link href="/projects/specusol">Details →</Link>
                 </div>
               </div>
             </div>
@@ -286,7 +288,7 @@ export default function Home() {
                   <span className="tag t-blue">Plotly</span>
                 </div>
                 <div className="plinks">
-                  <span className="muted">Coming soon</span>
+                  <Link href="/projects/finance-pipeline">Details →</Link>
                 </div>
               </div>
             </div>
