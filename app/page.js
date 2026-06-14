@@ -21,11 +21,36 @@ const LinkedinIcon = ({ size = 16 }) => (
 
 export default function Home() {
   const [dark, setDark] = useState(false);
+  const [typed, setTyped] = useState("");
+  const [cursorVisible, setCursorVisible] = useState(true);
+  const [cursorFaded, setCursorFaded] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
     if (stored === "dark") setDark(true);
   }, []);
+  useEffect(() => {
+    const full = "Hi, I'm Cindy! I build data-driven tools and show up for the communities I'm part of.";
+    let i = 0;
+    const type = () => {
+    if (i < full.length) {
+      setTyped(full.slice(0, i + 1));
+      i++;
+      setTimeout(type, 28);
+    } else {
+      let blinks = 0;
+      const blink = setInterval(() => {
+        setCursorVisible(v => !v);
+        blinks++;
+        if (blinks >= 6) {
+          clearInterval(blink);
+          setCursorFaded(true);
+        }
+      }, 400);
+    }
+  };
+  setTimeout(type, 300);
+}, []);
 
   const toggleDark = () => {
     setDark(d => {
@@ -313,7 +338,19 @@ export default function Home() {
         <div className="col">
           <div className="hero">
             <p className="eyebrow">cs student · builder · community leader</p>
-            <h1>Hi, I'm Cindy — I build data-driven tools and show up for the communities I'm part of.</h1>
+            <h1>
+  {typed}
+  <span style={{
+    display: "inline-block",
+    width: "2px",
+    height: "1em",
+    background: "var(--rose)",
+    marginLeft: "2px",
+    verticalAlign: "text-bottom",
+    opacity: cursorFaded ? 0 : (cursorVisible ? 1 : 0),
+    transition: cursorFaded ? "opacity 0.6s ease" : "none",
+  }} aria-hidden="true" />
+</h1>
           </div>
 
           <div id="projects" className="sec pgrid">
@@ -382,10 +419,10 @@ export default function Home() {
         <h2>A little about me</h2>
         <div className="about-flex">
           <div className="about-text">
-            <p>I'm a first-generation college student and a bilingual (English/Spanish) Computer Science student at Georgia Tech, on the People and Systems &amp; Architecture threads. I learned to navigate the world without a guide — figuring out college, financial aid, and a whole new system while teaching my parents along the way. I'm also a Gates, QuestBridge, and HSF scholar and my high school's valedictorian, but what I care about most is using what I learned the hard way to open doors for other people.</p>
+            <p>I'm a first-generation college student and a bilingual (English/Spanish) Computer Science student at Georgia Tech, on the People and Systems &amp; Architecture threads. I learned to navigate the world without a guide: figuring out college, financial aid, and a whole new system while teaching my parents along the way. I'm also a Gates, QuestBridge, and HSF scholar and my high school's valedictorian, but what I care about most is using what I learned the hard way to open doors for other people.</p>
             <p>Because finding my own path was isolating, I didn't want other students in my town's Latino community to face the same hurdles. As president of my school's HoPe chapter, I organized a county-wide FAFSA Night and walked 30+ families through their financial-aid applications in both English and Spanish, shared scholarship opportunities every week, secured up to $1,500 from local businesses for educational events, and mentored younger students. The chapter doubled to 200+ members, and I now work in Georgia Tech's Office of Scholarships &amp; Financial Aid, still helping students reach the resources that open doors.</p>
-            <p>In Fall 2025 I studied abroad at Georgia Tech-Europe in Metz, France, completing 13 credit hours while traveling to ten countries. Seeing that much of the world in one semester reshaped how I think about technology, too — the best tools meet people where they are, across languages and cultures.</p>
-            <p>Computer science humbled me early. I walked into my first object-oriented programming midterm overconfident and got a 50, which forced me to admit that memorizing my way through wasn't going to work. I rebuilt how I study from the ground up — deliberate practice, working problems one at a time, and using AI as a study partner by leading with my own thinking and using it to go deeper rather than skip the work. I brought my last midterm up to a 90, and that approach is now how I teach myself new things, like the data engineering behind my finance pipeline.</p>
+            <p>In Fall 2025 I studied abroad at Georgia Tech-Europe in Metz, France, completing 13 credit hours while traveling to ten countries. Seeing that much of the world in one semester reshaped how I think about technology too. The best tools meet people where they are, across languages and cultures.</p>
+            <p>Computer science humbled me early. I walked into my first object-oriented programming midterm overconfident and got a 50, which forced me to admit that memorizing my way through wasn't going to work. I rebuilt how I study from the ground up: deliberate practice and working problems one at a time. I brought my last midterm up to a 90, and that approach is now how I teach myself new things, like the data engineering behind my finance pipeline.</p>
             <p>Outside of code, I'm into graphic design, music, and anything at the intersection of technology and global community. Right now I'm looking for internships where I can build real things and keep learning from people who know more than I do.</p>
           </div>
           <div className="scrapbook">
