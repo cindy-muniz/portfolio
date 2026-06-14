@@ -163,6 +163,25 @@ export default function Home() {
   }
   @media (prefers-reduced-motion: reduce){ .polaroid { transition:none; } }
 
+  .xp { position:relative; padding-left:26px; }
+  .xp::before { content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px; background:var(--pinkLine); }
+  .xpitem { position:relative; margin-bottom:24px; }
+  .xpitem:last-child { margin-bottom:0; }
+  .xpitem::before { content:""; position:absolute; left:-26px; top:6px; width:11px; height:11px;
+                    border-radius:50%; background:var(--rose); box-shadow:0 0 0 3px var(--cream); }
+  .xphead { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .xprole { font-size:15px; font-weight:600; color:var(--ink); }
+  .xpdate { font-family:var(--mono); font-size:11.5px; color:var(--muted); white-space:nowrap; }
+  .xporg { font-size:13px; color:var(--muted); margin:3px 0 9px; display:flex; align-items:center;
+           gap:9px; flex-wrap:wrap; }
+  .xptype { font-size:10px; border-radius:999px; padding:1px 9px; font-weight:600; }
+  .xp ul { list-style:none; margin:0; padding:0; }
+  .xp li { font-size:13.5px; color:#3a3a37; padding-left:16px; position:relative; margin-bottom:6px;
+           line-height:1.5; }
+  .xp li:last-child { margin-bottom:0; }
+  .xp li::before { content:""; position:absolute; left:2px; top:8px; width:5px; height:5px;
+                   border-radius:50%; background:var(--pinkLine); }
+
   .skills { display:flex; flex-direction:column; gap:14px; }
   .skrow { display:flex; gap:14px; align-items:baseline; flex-wrap:wrap; }
   .sklabel { font-family:var(--mono); font-size:12.5px; color:var(--muted); min-width:96px; }
@@ -205,6 +224,7 @@ export default function Home() {
           <div className="nav-links">
             <a href="#projects">projects</a>
             <a href="#about">about</a>
+            <a href="#experience">experience</a>
             <a href={RESUME} target="_blank" rel="noopener">résumé</a>
             <a href="#contact">contact</a>
           </div>
@@ -239,7 +259,7 @@ export default function Home() {
         <div className="col">
           <div className="hero">
             <p className="eyebrow">cs student · builder · community leader</p>
-            <h1>Hi, I'm Cindy — I build data-driven tools and show up for the communities I'm part of.</h1>
+            <h1>Hi, I'm Cindy! I build data-driven tools and show up for the communities I'm part of.</h1>
           </div>
 
           <div id="projects" className="sec pgrid">
@@ -318,6 +338,58 @@ export default function Home() {
             <figure className="polaroid"><img src="/scrapbook1.jpg" alt="Cindy at the Eiffel Tower in Paris, France" /><figcaption>Paris</figcaption></figure>
             <figure className="polaroid"><img src="/scrapbook2.jpg" alt="Cindy in Interlaken, Switzerland" /><figcaption>Interlaken</figcaption></figure>
             <figure className="polaroid"><img src="/scrapbook3.jpg" alt="Cindy in the Netherlands" /><figcaption>Netherlands</figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div id="experience" className="wrap sec block">
+        <p className="ktitle">// experience</p>
+        <h2>Experience &amp; leadership</h2>
+        <div className="xp">
+          <div className="xpitem">
+            <div className="xphead">
+              <span className="xprole">Student Assistant — Office of Scholarships &amp; Financial Aid</span>
+              <span className="xpdate">May 2026 – Present</span>
+            </div>
+            <div className="xporg">Georgia Tech · Atlanta, GA <span className="xptype t-blue">Work</span></div>
+            <ul>
+              <li>Provide bilingual (English/Spanish) front-desk support, guiding students through multi-step financial-aid and FAFSA verification processes under FERPA compliance.</li>
+              <li>Partner with the Associate Director on process-improvement work, including restructuring the student-recruiting process.</li>
+            </ul>
+          </div>
+
+          <div className="xpitem">
+            <div className="xphead">
+              <span className="xprole">Coordinator of Volunteers &amp; Foundation Ambassador — Intercultural Fest</span>
+              <span className="xpdate">Mar 2024 – Present</span>
+            </div>
+            <div className="xporg">Cartersville, GA <span className="xptype t-purp">Community</span></div>
+            <ul>
+              <li>Coordinate 20+ volunteers across 12-hour cultural festivals drawing 500+ attendees (80+ service hours), and serve as Foundation Ambassador alongside the CEO.</li>
+            </ul>
+          </div>
+
+          <div className="xpitem">
+            <div className="xphead">
+              <span className="xprole">Sales Associate — Food City</span>
+              <span className="xpdate">Nov 2023 – May 2024</span>
+            </div>
+            <div className="xporg">Cartersville, GA <span className="xptype t-blue">Work</span></div>
+            <ul>
+              <li>Managed front-end transactions and customer service in a fast-paced, high-traffic environment.</li>
+            </ul>
+          </div>
+
+          <div className="xpitem">
+            <div className="xphead">
+              <span className="xprole">Chapter President — HoPe (Hispanic Organization Promoting Education)</span>
+              <span className="xpdate">Aug 2021 – May 2025</span>
+            </div>
+            <div className="xporg">Cartersville, GA <span className="xptype t-pink">Leadership</span></div>
+            <ul>
+              <li>Grew the chapter from ~100 to 200+ members and led weekly “Scholarship Sunday” outreach.</li>
+              <li>Organized a FAFSA Night for 30+ families and a cultural showcase reaching 1,000+ students; earned the National Chapter Award with 300+ service hours.</li>
+            </ul>
           </div>
         </div>
       </div>
