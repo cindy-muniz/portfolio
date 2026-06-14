@@ -225,6 +225,7 @@ export default function Home() {
             <a href="#projects">projects</a>
             <a href="#about">about</a>
             <a href="#experience">experience</a>
+            <Link href="/notes">notes</Link>
             <a href={RESUME} target="_blank" rel="noopener">résumé</a>
             <a href="#contact">contact</a>
           </div>
@@ -259,7 +260,7 @@ export default function Home() {
         <div className="col">
           <div className="hero">
             <p className="eyebrow">cs student · builder · community leader</p>
-            <h1>Hi, I'm Cindy! I build data-driven tools and show up for the communities I'm part of.</h1>
+            <h1>Hi, I'm Cindy — I build data-driven tools and show up for the communities I'm part of.</h1>
           </div>
 
           <div id="projects" className="sec pgrid">
