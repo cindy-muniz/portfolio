@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-  Mail, MapPin, ExternalLink, GraduationCap, Heart, Globe, FileText,
+  Mail, MapPin, ExternalLink, GraduationCap, Heart, Globe, FileText, Sun, Moon,
 } from "lucide-react";
 
 const RESUME = "/Cindy_Muniz_Portfolio_Resume.pdf";
@@ -19,8 +20,25 @@ const LinkedinIcon = ({ size = 16 }) => (
 );
 
 export default function Home() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark") setDark(true);
+  }, []);
+
+  const toggleDark = () => {
+    setDark(d => {
+      localStorage.setItem("theme", !d ? "dark" : "light");
+      return !d;
+    });
+  };
+
+  const d = dark;
+
   const css = `
   .site {
+    /* ── Light mode tokens ── */
     --cream:#F1EFE8; --blush:#FBEAF0; --lav:#EEEDFE; --peri:#E6F1FB; --white:#fff;
     --rose:#993556; --indigo:#534AB7; --blue:#185FA5;
     --pinkTagBg:#F4C0D1; --pinkTagTx:#72243E;
@@ -32,26 +50,50 @@ export default function Home() {
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
     background:var(--cream); color:var(--ink); font-family:var(--sans);
     line-height:1.6; min-height:100vh;
+    transition:background .25s, color .25s;
   }
+
+  /* ── Dark mode token overrides ── */
+  .site.dark {
+    --cream:#1a1625; --blush:#2e1f2a; --lav:#1e2240; --peri:#1e2240; --white:#241e33;
+    --rose:#f4a0b0; --indigo:#c9a0f4; --blue:#a0b4f4;
+    --pinkTagBg:#3d1f2e; --pinkTagTx:#f4a0b0;
+    --purpTagBg:#2a2050; --purpTagTx:#c9a0f4;
+    --blueTagBg:#1e2a50; --blueTagTx:#a0b4f4;
+    --ink:#f0eaf8; --muted:#9b92b3;
+    --pinkLine:#3d2a40; --blueLine:#2a3260;
+  }
+
   .site * { box-sizing:border-box; }
   .site a { color:inherit; text-decoration:none; }
   .wrap { max-width:1060px; margin:0 auto; padding:0 22px; }
   .sec { scroll-margin-top:78px; }
 
   .nav {
-    position:sticky; top:0; z-index:20; background:rgba(241,239,232,0.86);
+    position:sticky; top:0; z-index:20;
+    background:rgba(241,239,232,0.86);
     backdrop-filter:blur(8px); border-bottom:1px solid var(--pinkLine);
+    transition:background .25s, border-color .25s;
   }
+  .site.dark .nav { background:rgba(26,22,37,0.88); }
   .nav-in { display:flex; align-items:center; justify-content:space-between; height:60px; }
   .brand { font-size:20px; font-weight:600; color:var(--rose); letter-spacing:-0.01em; }
   .brand .star { color:var(--indigo); }
-  .nav-links { display:flex; gap:22px; font-size:14.5px; color:var(--muted); }
+  .nav-links { display:flex; gap:22px; font-size:14.5px; color:var(--muted); align-items:center; }
   .nav-links a:hover { color:var(--rose); }
+
+  .dm-btn {
+    background:none; border:1px solid var(--pinkLine); border-radius:8px;
+    width:32px; height:32px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--muted); transition:background .15s, color .15s;
+    flex-shrink:0;
+  }
+  .dm-btn:hover { background:var(--blush); color:var(--rose); }
 
   .dash { display:grid; grid-template-columns:248px 1fr; gap:16px; padding:30px 0 8px; }
   @media (max-width:780px){ .dash { grid-template-columns:1fr; } }
 
-  .card { background:var(--white); border:1px solid var(--pinkLine); border-radius:16px; }
+  .card { background:var(--white); border:1px solid var(--pinkLine); border-radius:16px; transition:background .25s, border-color .25s; }
   .col { display:flex; flex-direction:column; gap:14px; }
 
   .profile { padding:20px; text-align:center; }
@@ -71,7 +113,7 @@ export default function Home() {
   .soc:hover { background:var(--blush); }
 
   .status { background:var(--peri); border-radius:16px; padding:16px 16px 18px;
-            font-family:var(--mono); }
+            font-family:var(--mono); transition:background .25s; }
   .status h4 { color:var(--blue); font-size:12.5px; margin:0 0 11px; font-weight:600;
                letter-spacing:0.02em; }
   .status .row { font-size:12.5px; color:var(--blueTagTx); display:flex; gap:10px;
@@ -80,7 +122,7 @@ export default function Home() {
   .status .k { color:var(--blue); font-weight:600; text-transform:uppercase;
                letter-spacing:0.05em; font-size:10.5px; min-width:72px; flex:none; }
 
-  .hero { background:var(--blush); border-radius:16px; padding:22px 24px; }
+  .hero { background:var(--blush); border-radius:16px; padding:22px 24px; transition:background .25s; }
   .eyebrow { font-family:var(--mono); font-size:12px; color:var(--rose);
              letter-spacing:0.04em; margin:0 0 9px; }
   .hero h1 { font-size:25px; line-height:1.35; font-weight:600; color:var(--pinkTagTx);
@@ -90,23 +132,26 @@ export default function Home() {
   .pgrid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   @media (max-width:620px){ .pgrid { grid-template-columns:1fr; } }
 
-  .proj { padding:0; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease; }
+  .proj { padding:0; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease, background .25s; }
   .proj:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(153,53,86,0.10); }
+  .site.dark .proj:hover { box-shadow:0 10px 24px rgba(244,160,176,0.12); }
 
   .preview-img { position:relative; }
   .preview-img img { width:100%; height:172px; object-fit:cover; object-position:center top;
                      display:block; border-bottom:1px solid var(--pinkLine); }
 
   .preview { position:relative; background:var(--lav); padding:18px 16px 16px;
-             border-bottom:1px solid var(--pinkLine); }
+             border-bottom:1px solid var(--pinkLine); transition:background .25s; }
   .preview .wordmark { font-weight:700; font-size:15px; letter-spacing:0.04em; text-align:center;
                        color:var(--indigo); }
-  .preview .tag2 { text-align:center; font-size:10.5px; color:#7a72c4; margin-top:2px; letter-spacing:0.03em; }
+  .preview .tag2 { text-align:center; font-size:10.5px; color:var(--muted); margin-top:2px; letter-spacing:0.03em; }
 
   .badge-live { position:absolute; top:12px; right:12px; font-size:10.5px; font-weight:600;
                 color:#0F6E56; background:#9FE1CB; border-radius:999px; padding:2px 9px;
                 display:flex; align-items:center; gap:5px; z-index:2; }
+  .site.dark .badge-live { color:#9FE1CB; background:#085041; }
   .badge-live .dot { width:6px; height:6px; border-radius:50%; background:#0F6E56; }
+  .site.dark .badge-live .dot { background:#9FE1CB; }
   .badge-wip { position:absolute; top:12px; right:12px; font-size:10.5px; font-weight:600;
                color:var(--purpTagTx); background:var(--purpTagBg); border-radius:999px; padding:2px 9px; }
 
@@ -123,7 +168,7 @@ export default function Home() {
   .plinks a:hover { text-decoration:underline; }
   .plinks .muted { color:var(--muted); cursor:default; }
 
-  .updates { background:var(--lav); border-radius:16px; padding:14px 18px; margin-top:14px; }
+  .updates { background:var(--lav); border-radius:16px; padding:14px 18px; margin-top:14px; transition:background .25s; }
   .updates h4 { font-family:var(--mono); font-size:12px; color:var(--indigo); margin:0 0 9px;
                 font-weight:600; letter-spacing:0.02em; }
   .updates .u { font-size:12.5px; color:var(--purpTagTx); display:flex; gap:10px;
@@ -137,7 +182,8 @@ export default function Home() {
   .ktitle { font-size:13px; font-family:var(--mono); color:var(--rose); letter-spacing:0.05em;
             margin:0 0 16px; }
   .block h2 { font-size:22px; font-weight:600; margin:0 0 14px; letter-spacing:-0.01em; }
-  .about p { font-size:15px; color:#3a3a37; margin:0 0 14px; }
+  .about p { font-size:15px; color:var(--muted); margin:0 0 14px; }
+  .site:not(.dark) .about p { color:#3a3a37; }
   .about p:last-child { margin-bottom:0; }
 
   .about-flex { display:flex; gap:34px; align-items:flex-start; }
@@ -147,9 +193,11 @@ export default function Home() {
   .polaroid { background:#fff; margin:0; padding:9px 9px 10px; border-radius:3px; width:158px;
               box-shadow:0 6px 16px rgba(0,0,0,0.16); position:relative;
               transition:transform .22s ease, box-shadow .22s ease; }
+  .site.dark .polaroid { background:#2a2035; box-shadow:0 6px 16px rgba(0,0,0,0.45); }
   .polaroid img { width:100%; height:176px; object-fit:cover; display:block; }
   .polaroid figcaption { text-align:center; margin-top:9px; font-size:13.5px; color:#3a3a37;
                          font-family:"Segoe Script","Bradley Hand","Comic Sans MS",cursive; }
+  .site.dark .polaroid figcaption { color:#c9b8d8; }
   .polaroid:nth-child(1){ transform:rotate(-5deg); margin-left:6px; z-index:3; }
   .polaroid:nth-child(2){ transform:rotate(4deg); margin-top:-34px; margin-left:58px; z-index:2; }
   .polaroid:nth-child(3){ transform:rotate(-3deg); margin-top:-30px; margin-left:12px; z-index:1; }
@@ -176,8 +224,9 @@ export default function Home() {
            gap:9px; flex-wrap:wrap; }
   .xptype { font-size:10px; border-radius:999px; padding:1px 9px; font-weight:600; }
   .xp ul { list-style:none; margin:0; padding:0; }
-  .xp li { font-size:13.5px; color:#3a3a37; padding-left:16px; position:relative; margin-bottom:6px;
+  .xp li { font-size:13.5px; color:var(--muted); padding-left:16px; position:relative; margin-bottom:6px;
            line-height:1.5; }
+  .site:not(.dark) .xp li { color:#3a3a37; }
   .xp li:last-child { margin-bottom:0; }
   .xp li::before { content:""; position:absolute; left:2px; top:8px; width:5px; height:5px;
                    border-radius:50%; background:var(--pinkLine); }
@@ -189,17 +238,18 @@ export default function Home() {
 
   .honors { display:flex; gap:9px; flex-wrap:wrap; }
   .honor { font-size:13px; border-radius:12px; padding:7px 14px; background:var(--white);
-           border:1px solid var(--pinkLine); display:flex; align-items:center; gap:7px; color:var(--ink); }
+           border:1px solid var(--pinkLine); display:flex; align-items:center; gap:7px; color:var(--ink);
+           transition:background .25s, border-color .25s; }
   .honor svg { color:var(--rose); }
 
-  .foot { margin-top:50px; background:var(--blush); border-top:1px solid var(--pinkLine); }
+  .foot { margin-top:50px; background:var(--blush); border-top:1px solid var(--pinkLine); transition:background .25s, border-color .25s; }
   .foot-in { padding:38px 0 30px; }
   .foot h2 { font-size:22px; font-weight:600; margin:0 0 8px; color:var(--pinkTagTx); }
   .foot p { font-size:14.5px; color:var(--muted); margin:0 0 18px; max-width:460px; }
   .fbtns { display:flex; gap:11px; flex-wrap:wrap; }
   .fbtn { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500;
           background:var(--white); border:1px solid var(--pinkLine); border-radius:12px;
-          padding:10px 15px; color:var(--rose); transition:background .15s; }
+          padding:10px 15px; color:var(--rose); transition:background .15s, border-color .25s; }
   .fbtn:hover { background:var(--lav); }
   .copyright { margin-top:26px; font-size:12px; color:var(--muted); }
 
@@ -209,13 +259,13 @@ export default function Home() {
   .foot { animation:fadeUp .6s ease both; }
 
   @media (prefers-reduced-motion: reduce){
-    .proj { transition:none; }
+    .proj { transition:background .25s; }
     .dash, .block, .foot { animation:none; }
   }
   `;
 
   return (
-    <div className="site">
+    <div className={`site${d ? " dark" : ""}`}>
       <style>{css}</style>
 
       <nav className="nav">
@@ -228,6 +278,9 @@ export default function Home() {
             <Link href="/notes">notes</Link>
             <a href={RESUME} target="_blank" rel="noopener">résumé</a>
             <a href="#contact">contact</a>
+            <button className="dm-btn" onClick={toggleDark} aria-label="Toggle dark mode">
+              {d ? <Sun size={15} /> : <Moon size={15} />}
+            </button>
           </div>
         </div>
       </nav>
@@ -358,7 +411,6 @@ export default function Home() {
               <li>Partner with the Associate Director on process-improvement work, including restructuring the student-recruiting process.</li>
             </ul>
           </div>
-
           <div className="xpitem">
             <div className="xphead">
               <span className="xprole">Coordinator of Volunteers &amp; Foundation Ambassador — Intercultural Fest</span>
@@ -369,7 +421,6 @@ export default function Home() {
               <li>Coordinate 20+ volunteers across 12-hour cultural festivals drawing 500+ attendees (80+ service hours), and serve as Foundation Ambassador alongside the CEO.</li>
             </ul>
           </div>
-
           <div className="xpitem">
             <div className="xphead">
               <span className="xprole">Sales Associate — Food City</span>
@@ -380,7 +431,6 @@ export default function Home() {
               <li>Managed front-end transactions and customer service in a fast-paced, high-traffic environment.</li>
             </ul>
           </div>
-
           <div className="xpitem">
             <div className="xphead">
               <span className="xprole">Chapter President — HoPe (Hispanic Organization Promoting Education)</span>
@@ -388,7 +438,7 @@ export default function Home() {
             </div>
             <div className="xporg">Cartersville, GA <span className="xptype t-pink">Leadership</span></div>
             <ul>
-              <li>Grew the chapter from ~100 to 200+ members and led weekly “Scholarship Sunday” outreach.</li>
+              <li>Grew the chapter from ~100 to 200+ members and led weekly "Scholarship Sunday" outreach.</li>
               <li>Organized a FAFSA Night for 30+ families and a cultural showcase reaching 1,000+ students; earned the National Chapter Award with 300+ service hours.</li>
             </ul>
           </div>
