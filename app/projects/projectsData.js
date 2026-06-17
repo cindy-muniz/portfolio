@@ -6,18 +6,18 @@ export const projects = [
   {
     slug: "specusol",
     title: "Specusol — Solar Energy Market Dashboard",
-    tagline: "Modeling surplus Texas solar energy as a tradeable asset — built in 24 hours.",
+    tagline: "Modeling surplus Texas solar energy as a tradeable asset — built in 36 hours.",
     status: "live", // "live" or "wip"
     statusLabel: "Live",
     timeframe: "January 2026",
-    context: "EnergyHack @ Georgia Tech · my first hackathon · team of 2 · built in 24 hours",
+    context: "EnergyHack @ Georgia Tech · my first hackathon · team of 2 · built in 36 hours",
     image: "/dashboard.png",
     imageAlt:
       "Specusol dashboard showing the Houston ERCOT zone with a 24-hour supply and demand model",
     liveUrl: "https://energyhack2026.onrender.com",
     codeUrl: "https://github.com/cindy-muniz/EnergyHack2026",
     overview:
-      "EnergyHack challenged teams to turn an energy problem into something tangible in 24 hours. We built Specusol, a dashboard that models surplus solar energy in Texas's ERCOT grid as if it were a tradeable financial asset — pairing real grid zones with supply, demand, and solar-generation data so the surplus is easy to see and reason about. It was my first hackathon, my first time using Git and deploying to the web, and we shipped it live on Render by the deadline.",
+      "EnergyHack challenged teams to turn an energy problem into something tangible in 36 hours. We built Specusol, a dashboard that models surplus solar energy in Texas's ERCOT grid as if it were a tradeable financial asset — pairing real grid zones with supply, demand, and solar-generation data so the surplus is easy to see and reason about. It was my first hackathon, my first time using Git and deploying to the web, and we shipped it live on Render by the deadline.",
     contributions: [
       "Designed and implemented the ERCOT zone map — my idea and my first build of it — using a pure-Python address-to-zone lookup so any Texas location maps to the right grid zone.",
       "Built the supply-and-demand and solar-irradiance / daylight visualizations, including automatic detection of the supply–demand equilibrium point.",

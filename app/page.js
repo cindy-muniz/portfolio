@@ -361,7 +361,7 @@ export default function Home() {
               </div>
               <div className="pbody">
                 <h3>Specusol — Solar Energy Market Dashboard</h3>
-                <p>Built in 24 hours at EnergyHack @ Georgia Tech (my first hackathon). I designed and built the ERCOT zone map and the supply/demand &amp; daylight visualizations; my teammate built the stock tracker. Deployed on Render.</p>
+                <p>Built in 36 hours at EnergyHack @ Georgia Tech (my first hackathon). I designed and built the ERCOT zone map and the supply/demand &amp; daylight visualizations; my teammate built the stock tracker. Deployed on Render.</p>
                 <div className="tags">
                   <span className="tag t-pink">Python</span>
                   <span className="tag t-blue">Plotly Dash</span>
