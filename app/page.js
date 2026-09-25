@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   Mail, MapPin, ExternalLink, GraduationCap, Heart, Globe, FileText, Sun, Moon,
 } from "lucide-react";
+import { projects } from "./projects/projectsData";
 
 const RESUME = "/Cindy_Muniz_Portfolio_Resume.pdf";
 
@@ -313,23 +314,23 @@ export default function Home() {
       <div className="wrap dash">
         <div className="col">
           <div className="card profile">
-            <img className="avatar" src="/Professional_pic.jpg" alt="Cindy Muniz" />
+            <img className="avatar" src="/prof_pic2.jpg" alt="Cindy Muniz" />
             <p className="pname">Cindy Muniz</p>
             <p className="prole">CS @ Georgia Tech</p>
             <p className="pmeta"><MapPin size={14} /> Atlanta, GA</p>
             <p className="pmeta"><Globe size={14} /> Bilingual · EN / ES</p>
             <div className="socials">
               <a className="soc" href="https://github.com/cindy-muniz" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><GithubIcon size={17} /></a>
-              <a className="soc" href="https://www.linkedin.com/in/cindy-muniz-664906366" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedinIcon size={17} /></a>
-              <a className="soc" href="mailto:cmuniz31@gatech.edu" aria-label="Email"><Mail size={17} /></a>
+              <a className="soc" href="https://www.linkedin.com/in/cindy-muniz/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedinIcon size={17} /></a>
+              <a className="soc" href="mailto:cindypmuniz@gmail.com" aria-label="Email"><Mail size={17} /></a>
               <a className="soc" href={RESUME} target="_blank" rel="noopener" aria-label="Résumé"><FileText size={17} /></a>
             </div>
           </div>
 
           <div className="status">
             <h4>// currently</h4>
-            <div className="row"><span className="k">building</span><span>a personal finance data pipeline</span></div>
-            <div className="row"><span className="k">studying</span><span>data structures &amp; algorithms</span></div>
+            <div className="row"><span className="k">building</span><span>GT Explores mobile app with GITMAD</span></div>
+            <div className="row"><span className="k">studying</span><span>CS 2340 Objects &amp; Design · CS 2110 Computer Organization</span></div>
             <div className="row"><span className="k">into</span><span>the globalization of technology</span></div>
             <div className="row"><span className="k">offscreen</span><span>community service &amp; music</span></div>
           </div>
@@ -354,62 +355,58 @@ export default function Home() {
           </div>
 
           <div id="projects" className="sec pgrid">
-            <div className="card proj">
-              <div className="preview-img">
-                <span className="badge-live"><span className="dot" /> live</span>
-                <img src="/dashboard.png" alt="Specusol dashboard — verified Houston ERCOT zone with the 24-hour supply and demand model" />
-              </div>
-              <div className="pbody">
-                <h3>Specusol — Solar Energy Market Dashboard</h3>
-                <p>Built in 36 hours at EnergyHack @ Georgia Tech (my first hackathon). I designed and built the ERCOT zone map and the supply/demand &amp; daylight visualizations; my teammate built the stock tracker. Deployed on Render.</p>
-                <div className="tags">
-                  <span className="tag t-pink">Python</span>
-                  <span className="tag t-blue">Plotly Dash</span>
-                  <span className="tag t-purp">Leaflet</span>
-                  <span className="tag t-blue">NumPy</span>
+            {projects.map((p) => {
+              const badge = p.status === "live"
+                ? <span className="badge-live"><span className="dot" /> live</span>
+                : <span className="badge-wip">in progress</span>;
+              return (
+                <div className="card proj" key={p.slug}>
+                  {p.image ? (
+                    <div className="preview-img">
+                      {badge}
+                      <img src={p.image} alt={p.imageAlt} />
+                    </div>
+                  ) : (
+                    <div className="preview">
+                      {badge}
+                      <div className="wordmark">{p.wordmark || p.title}</div>
+                      <div className="tag2">{p.cardTag}</div>
+                      {p.slug === "finance-pipeline" && (
+                        <svg viewBox="0 0 300 70" style={{ width: "100%", height: 56, marginTop: 8, display: "block" }}>
+                          <g stroke="#9a90e0" strokeWidth="2" fill="none" opacity="0.85">
+                            <path d="M10,55 L70,55 L70,30 L130,30 L130,45 L190,45 L190,20 L250,20 L250,40 L290,40" />
+                          </g>
+                          <circle cx="70" cy="30" r="3.5" fill="#534AB7" />
+                          <circle cx="190" cy="20" r="3.5" fill="#534AB7" />
+                        </svg>
+                      )}
+                    </div>
+                  )}
+                  <div className="pbody">
+                    <h3>{p.title}</h3>
+                    <p>{p.summary}</p>
+                    <div className="tags">
+                      {p.stack.slice(0, 4).map((t, i) => (
+                        <span key={t} className={`tag ${["t-pink", "t-blue", "t-purp", "t-blue"][i]}`}>{t}</span>
+                      ))}
+                    </div>
+                    <div className="plinks">
+                      {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"><ExternalLink size={14} /> Live demo</a>}
+                      {p.codeUrl && <a href={p.codeUrl} target="_blank" rel="noopener noreferrer"><GithubIcon size={14} /> Code</a>}
+                      <Link href={`/projects/${p.slug}`}>Details →</Link>
+                    </div>
+                  </div>
                 </div>
-                <div className="plinks">
-                  <a href="https://energyhack2026.onrender.com" target="_blank" rel="noopener noreferrer"><ExternalLink size={14} /> Live demo</a>
-                  <a href="https://github.com/cindy-muniz/EnergyHack2026" target="_blank" rel="noopener noreferrer"><GithubIcon size={14} /> Code</a>
-                  <Link href="/projects/specusol">Details →</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="card proj">
-              <div className="preview">
-                <span className="badge-wip">in progress</span>
-                <div className="wordmark">Finance Data Pipeline</div>
-                <div className="tag2">ETL · anomaly detection · dashboard</div>
-                <svg viewBox="0 0 300 70" style={{ width: "100%", height: 56, marginTop: 8, display: "block" }}>
-                  <g stroke="#9a90e0" strokeWidth="2" fill="none" opacity="0.85">
-                    <path d="M10,55 L70,55 L70,30 L130,30 L130,45 L190,45 L190,20 L250,20 L250,40 L290,40" />
-                  </g>
-                  <circle cx="70" cy="30" r="3.5" fill="#534AB7" />
-                  <circle cx="190" cy="20" r="3.5" fill="#534AB7" />
-                </svg>
-              </div>
-              <div className="pbody">
-                <h3>Personal Finance Data Pipeline</h3>
-                <p>An end-to-end ETL pipeline in Python that ingests, validates, and stores transactions, flags anomalies with z-scores, and surfaces it all in an interactive dashboard. Building now, with tests and CI.</p>
-                <div className="tags">
-                  <span className="tag t-pink">Python</span>
-                  <span className="tag t-blue">pandas</span>
-                  <span className="tag t-purp">SQLite</span>
-                  <span className="tag t-blue">Plotly</span>
-                </div>
-                <div className="plinks">
-                  <Link href="/projects/finance-pipeline">Details →</Link>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
           <div className="updates">
             <h4>// recent updates</h4>
-            <div className="u"><span className="when">jun 2026</span>polished &amp; documented my hackathon repos</div>
-            <div className="u"><span className="when">jan 2026</span>shipped Specusol at EnergyHack @ Georgia Tech</div>
-            <div className="u"><span className="when">fall 2025</span>studied abroad at GT-Europe in Metz, France</div>
+            <div className="u"><span className="when">oct 2026</span>registered for Google DevFest Atlanta — excited!</div>
+            <div className="u"><span className="when">sept 2026</span>attended Tapia Conference on GT CoC scholarship (1 of 17)</div>
+            <div className="u"><span className="when">sept 2026</span>joined GITMAD, started building GT Explores mobile app</div>
+            <div className="u"><span className="when">fall 2026</span>TA for CS 1100, leading two Hive mentor groups (55 students)</div>
           </div>
         </div>
       </div>
@@ -420,10 +417,10 @@ export default function Home() {
         <div className="about-flex">
           <div className="about-text">
             <p>I'm a first-generation college student and a bilingual (English/Spanish) Computer Science student at Georgia Tech, on the People and Systems &amp; Architecture threads. I learned to navigate the world without a guide: figuring out college, financial aid, and a whole new system while teaching my parents along the way. I'm also a Gates, QuestBridge, and HSF scholar and my high school's valedictorian, but what I care about most is using what I learned the hard way to open doors for other people.</p>
-            <p>Because finding my own path was isolating, I didn't want other students in my town's Latino community to face the same hurdles. As president of my school's HoPe chapter, I organized a county-wide FAFSA Night and walked 30+ families through their financial-aid applications in both English and Spanish, shared scholarship opportunities every week, secured up to $1,500 from local businesses for educational events, and mentored younger students. The chapter doubled to 200+ members, and I now work in Georgia Tech's Office of Scholarships &amp; Financial Aid, still helping students reach the resources that open doors.</p>
+            <p>Because finding my own path was isolating, I didn't want other students in my town's Latino community to face the same hurdles. As president of my school's HoPe chapter, I organized a county-wide FAFSA Night and walked 30+ families through their financial-aid applications in both English and Spanish, shared scholarship opportunities every week, secured up to $1,500 from local businesses for educational events, and mentored younger students. The chapter doubled to 200+ members, and this past summer I worked in Georgia Tech's Office of Scholarships &amp; Financial Aid, still helping students reach the resources that open doors.</p>
             <p>In Fall 2025 I studied abroad at Georgia Tech-Europe in Metz, France, completing 13 credit hours while traveling to ten countries. Seeing that much of the world in one semester reshaped how I think about technology too. The best tools meet people where they are, across languages and cultures.</p>
             <p>Computer science humbled me early. My first object-oriented programming midterm was a reality check that forced me to rethink how I learn — memorizing wasn't going to cut it. I rebuilt my study approach from scratch: deliberate practice, working problems one at a time, sitting with concepts until they clicked. That shift made a real difference, and it's still how I teach myself new things today, like the data engineering behind my finance pipeline.</p>
-            <p>Outside of code, I'm into graphic design, music, and anything at the intersection of technology and global community. Right now I'm looking for internships where I can build real things and keep learning from people who know more than I do.</p>
+            <p>Outside of code, I'm into graphic design, music, and anything at the intersection of technology and global community. Now in my second year, I'm also an undergraduate TA for CS 1100, which feels like another way of giving back: helping first-year CS students find their footing the way I once had to find mine. I'm looking for internships where I can build real things and keep learning from people who know more than I do.</p>
           </div>
           <div className="scrapbook">
             <figure className="polaroid"><img src="/scrapbook1.jpg" alt="Cindy at the Eiffel Tower in Paris, France" /><figcaption>Paris</figcaption></figure>
@@ -439,13 +436,26 @@ export default function Home() {
         <div className="xp">
           <div className="xpitem">
             <div className="xphead">
+              <span className="xprole">Undergraduate Teaching Assistant — CS 1100: Pathways in Computing</span>
+              <span className="xpdate">Aug 2026 – Present</span>
+            </div>
+            <div className="xporg">Georgia Institute of Technology · Atlanta, GA <span className="xptype t-blue">Work</span></div>
+            <ul>
+              <li>Selected as undergraduate TA for CS 1100: Pathways in Computing, the required first-year seminar for all incoming CS majors; support a 200-student section.</li>
+              <li>Personally recommended by the Head TA to lead two Hive mentor groups (55 students total: 26 first-years and 29 upperclassmen) — typically one TA leads one Hive.</li>
+              <li>Hosting 12+ in-person meetings across both Hives throughout the semester, adapting sessions for career preparation and community building.</li>
+            </ul>
+          </div>
+          <div className="xpitem">
+            <div className="xphead">
               <span className="xprole">Student Assistant — Office of Scholarships &amp; Financial Aid</span>
-              <span className="xpdate">May 2026 – Present</span>
+              <span className="xpdate">May 2026 – Aug 2026</span>
             </div>
             <div className="xporg">Georgia Tech · Atlanta, GA <span className="xptype t-blue">Work</span></div>
             <ul>
-              <li>Provide bilingual (English/Spanish) front-desk support, guiding students through multi-step financial-aid and FAFSA verification processes under FERPA compliance.</li>
-              <li>Partner with the Associate Director on process-improvement work, including restructuring the student-recruiting process.</li>
+              <li>Provided bilingual (English/Spanish) front-desk support, guiding students through multi-step financial-aid and FAFSA verification processes under FERPA compliance.</li>
+              <li>Partnered with the Associate Director on process-improvement work, including restructuring the student-recruiting process.</li>
+              <li>Co-authored the office's Peer Training Manual, consolidating 10+ years of institutional documentation into one structured guide to onboard 15 incoming Fall student assistants.</li>
             </ul>
           </div>
           <div className="xpitem">
@@ -493,18 +503,33 @@ export default function Home() {
               <span className="tag t-pink">Java</span>
               <span className="tag t-pink">JavaScript</span>
               <span className="tag t-pink">SQL</span>
+              <span className="tag t-pink">TypeScript</span>
+              <span className="tag t-pink">HTML/CSS</span>
+            </span>
+          </div>
+          <div className="skrow">
+            <span className="sklabel">frameworks</span>
+            <span className="skset">
+              <span className="tag t-purp">Django</span>
+              <span className="tag t-purp">React Native</span>
+              <span className="tag t-purp">Expo</span>
+              <span className="tag t-purp">Next.js</span>
+              <span className="tag t-purp">pandas</span>
+              <span className="tag t-purp">NumPy</span>
+              <span className="tag t-purp">Plotly Dash</span>
             </span>
           </div>
           <div className="skrow">
             <span className="sklabel">tools</span>
             <span className="skset">
               <span className="tag t-blue">Git / GitHub</span>
-              <span className="tag t-blue">pandas</span>
               <span className="tag t-blue">SQLite</span>
               <span className="tag t-blue">pytest</span>
               <span className="tag t-blue">JUnit</span>
               <span className="tag t-blue">GitHub Actions</span>
-              <span className="tag t-blue">HTML</span>
+              <span className="tag t-blue">Vercel</span>
+              <span className="tag t-blue">Android Studio</span>
+              <span className="tag t-blue">Agile / Scrum</span>
             </span>
           </div>
           <div className="skrow">
@@ -526,6 +551,11 @@ export default function Home() {
           <span className="honor"><GraduationCap size={15} /> HSF Scholar</span>
           <span className="honor"><Heart size={15} /> Dean's List</span>
           <span className="honor"><Heart size={15} /> Valedictorian</span>
+          <span className="honor"><GraduationCap size={15} /> Tapia Conference Scholar · 1 of 17</span>
+          <span className="honor"><GraduationCap size={15} /> HSF NLC 2026 Participant</span>
+          <span className="honor"><Heart size={15} /> Rewriting the Code Member</span>
+          <span className="honor"><Heart size={15} /> WST Learning Community</span>
+          <span className="honor"><Heart size={15} /> S2C Pathway Cohort</span>
         </div>
       </div>
 
@@ -534,10 +564,10 @@ export default function Home() {
           <h2>Let's connect</h2>
           <p>I'm always happy to talk about software, community work, or a good project. The fastest way to reach me is email.</p>
           <div className="fbtns">
-            <a className="fbtn" href="mailto:cmuniz31@gatech.edu"><Mail size={16} /> cmuniz31@gatech.edu</a>
+            <a className="fbtn" href="mailto:cindypmuniz@gmail.com"><Mail size={16} /> cindypmuniz@gmail.com</a>
             <a className="fbtn" href={RESUME} target="_blank" rel="noopener"><FileText size={16} /> Résumé</a>
             <a className="fbtn" href="https://github.com/cindy-muniz" target="_blank" rel="noopener noreferrer"><GithubIcon size={16} /> GitHub</a>
-            <a className="fbtn" href="https://www.linkedin.com/in/cindy-muniz-664906366" target="_blank" rel="noopener noreferrer"><LinkedinIcon size={16} /> LinkedIn</a>
+            <a className="fbtn" href="https://www.linkedin.com/in/cindy-muniz/" target="_blank" rel="noopener noreferrer"><LinkedinIcon size={16} /> LinkedIn</a>
           </div>
           <p className="copyright">© 2026 Cindy Muniz · built with care</p>
         </div>

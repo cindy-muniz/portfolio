@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ExternalLink, ArrowLeft, Sun, Moon } from "lucide-react";
+import { ExternalLink, ArrowLeft, Sun, Moon, Lock } from "lucide-react";
 import { projects } from "../projectsData";
 
 const GithubIcon = ({ size = 16 }) => (
@@ -88,6 +88,7 @@ export default function ProjectPage({ params }) {
   .pjt .btn-ghost { background:var(--white); border:1px solid var(--pinkLine); color:var(--rose); transition:background .25s, border-color .25s; }
   .pjt .btn-ghost:hover { background:var(--blush); }
   .pjt .soon { font-size:13px; color:var(--muted); font-style:italic; }
+  .pjt .private { font-size:13px; color:var(--muted); display:inline-flex; align-items:center; gap:6px; }
   .pjt .shot { margin:26px 0 6px; border-radius:16px; overflow:hidden;
                border:1px solid var(--pinkLine); background:var(--white); transition:border-color .25s; }
   .pjt .shot img { width:100%; display:block; }
@@ -137,12 +138,20 @@ export default function ProjectPage({ params }) {
                 <ExternalLink size={15} /> Live demo
               </a>
             )}
+            {project.portfolioUrl && (
+              <a className="btn btn-ghost" href={project.portfolioUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink size={15} /> Portfolio site
+              </a>
+            )}
             {project.codeUrl && (
               <a className="btn btn-ghost" href={project.codeUrl} target="_blank" rel="noopener noreferrer">
                 <GithubIcon size={15} /> View code
               </a>
             )}
-            {!project.liveUrl && !project.codeUrl && (
+            {project.privateRepo && (
+              <span className="private"><Lock size={14} /> Private repository — code not publicly available</span>
+            )}
+            {!project.liveUrl && !project.codeUrl && !project.privateRepo && (
               <span className="soon">Code coming soon — building in the open.</span>
             )}
           </div>

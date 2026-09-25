@@ -1,13 +1,141 @@
 // All of your project details live here.
 // To add a new project later, copy one of these objects and fill it in —
-// the detail page builds itself from this data.
+// the detail page and the homepage card build themselves from this data.
+// Newest projects go first.
 
 export const projects = [
+  {
+    slug: "gt-explores",
+    title: "GT Explores",
+    tagline: "A crowdsourced campus map where students rank spots through photo check-ins, friend tagging, and a contributor leaderboard.",
+    summary: "A crowdsourced campus discovery app built with the GITMAD project team — photo check-ins, friend tagging, and a contributor leaderboard. My first mobile project.",
+    cardTag: "mobile · campus discovery · GITMAD",
+    status: "wip", // "live" or "wip"
+    statusLabel: "In progress",
+    timeframe: "Sept 2026 – Present",
+    context: "GITMAD Project Team · Georgia Tech · selected via application",
+    image: null,
+    imageAlt: "",
+    liveUrl: null,
+    codeUrl: null,
+    privateRepo: true,
+    overview:
+      "Every campus has its folklore — the best sunset spot, the elevator nobody knows about — but it's all word of mouth. GT Explores turns that into a living, rankable map built by students, for students: visit a spot, snap a photo, rank it, and tag friends into the visit like a shared memory. A leaderboard rewards the students who explore and contribute the most. It's being built by the GITMAD (GT Mastering Android Development) student project team, which I joined through a competitive application process, and it's my first mobile development project.",
+    contributions: [
+      "Contributing to a cross-platform mobile app built with React Native, Expo, and TypeScript.",
+      "Working with a Firebase backend to support photo check-ins, friend tagging, and a contributor leaderboard.",
+      "Collaborating with a student project team through shared repos, task boards, and code review.",
+      "Pitched a \"Hidden Gem or Keep it Hidden?\" feature in my application — letting students flag underrated spots worth exploring and infamous ones best avoided, so freshmen get an honest, down-to-earth picture of campus. A feature I hope to help build as the app grows.",
+    ],
+    stack: ["React Native", "Expo", "TypeScript", "Firebase", "Python"],
+    learnings: [
+      "Learning mobile development patterns from day one — navigation, state, and building for real devices.",
+      "Getting comfortable with TypeScript and a Firebase-backed architecture.",
+      "Building something from scratch with a team that shares one goal — learning through trial and error, not just for a grade.",
+    ],
+  },
+  {
+    slug: "wayhire",
+    title: "WayHire",
+    tagline: "A full-stack Django recruiting platform connecting early-career job seekers with employers — built in a 4-person Scrum team.",
+    summary: "A Django recruiting platform where job seekers apply with tailored notes and track applications through a status pipeline. Built in a 4-person Scrum team.",
+    cardTag: "recruiting · django · scrum team",
+    status: "wip",
+    statusLabel: "In progress",
+    timeframe: "Fall 2026",
+    context: "CS 2340: Objects and Design · Georgia Tech · team of 4 · Agile/Scrum",
+    image: null,
+    imageAlt: "",
+    liveUrl: null,
+    codeUrl: null,
+    privateRepo: true,
+    overview:
+      "WayHire is a recruiting web app built by a four-person team for CS 2340. Job seekers build profiles, search and apply to jobs with tailored notes, and track applications through a status pipeline (Applied → Review → Interview → Offer → Closed).",
+    contributions: [
+      "US3 — Apply with a tailored note: built the application flow as a POST form with CSRF protection.",
+      "US4 — Application status pipeline and the My Applications page (Applied → Review → Interview → Offer → Closed).",
+      "Shipped a site-wide Bootstrap fix that unblocked the whole team, plus a bug-fix PR restoring the Applied badge.",
+      "Resolved two merge conflicts across teammates' branches.",
+      "Created the Sprint 1 Use Case Diagram in draw.io — 3 actors covering 24 user stories.",
+      "Designed the brand identity: logo, mascot, color palette, and the \"Go Way Higher\" tagline.",
+    ],
+    stack: ["Python", "Django", "SQLite", "HTML/CSS", "Bootstrap", "Git / GitHub"],
+    learnings: [
+      "Working on a shared codebase — branching, pull requests, code review, and resolving conflicts.",
+      "Running real Scrum sprints: user stories, estimates, and communicating dependencies.",
+      "How small, well-placed fixes can unblock an entire team.",
+    ],
+  },
+  {
+    slug: "gt-movies-store",
+    title: "GT Movies Store",
+    tagline: "A deployed movies store with user authentication, movie and review CRUD, and 21 user stories delivered in Agile iterations.",
+    summary: "A deployed Django movies store with user auth and full CRUD for movies and reviews — 21 user stories delivered in Agile iterations.",
+    cardTag: "django · full-stack · deployed",
+    status: "live",
+    statusLabel: "Live",
+    timeframe: "Sept 2026",
+    context: "CS 2340: Objects and Design · Georgia Tech · solo · Agile",
+    image: "/gt-movies.webp",
+    imageAlt: "GT Movies Store homepage with the Movies Store banner, navigation, and footer",
+    liveUrl: "https://cindymuniz.pythonanywhere.com/",
+    codeUrl: null,
+    privateRepo: false,
+    portfolioUrl: "https://cindypmuniz2006.wixsite.com/cindy-muniz",
+    overview:
+      "Full-stack Django web app with user auth, movie and review CRUD, a shopping cart with order history, and a SQLite backend, deployed on PythonAnywhere. 21 user stories in Agile iterations with 7 hours of documented development process.",
+    contributions: [
+      "Built user authentication — sign up, log in, and log out.",
+      "Implemented full CRUD for movies and reviews on a SQLite backend — users can edit or delete their own reviews and report others'.",
+      "Added a shopping cart and order history so users can purchase movies and review past orders.",
+      "Delivered 21 user stories across Agile iterations and documented 7 hours of development process in a course portfolio site.",
+      "Deployed the app to PythonAnywhere.",
+    ],
+    stack: ["Python", "Django", "SQLite", "HTML/CSS", "Bootstrap"],
+    learnings: [
+      "How Django's models, views, and templates fit together in a full-stack app.",
+      "Deploying a Python web app to a live server for the first time.",
+      "Breaking work into user stories and delivering it iteratively.",
+    ],
+  },
+  {
+    slug: "finance-pipeline",
+    title: "Personal Finance Data Pipeline",
+    tagline: "An end-to-end ETL pipeline that turns raw transactions into insight — with tests and CI.",
+    summary: "An ETL pipeline that ingests, validates, and cleans 200+ transactions, flags anomalies with z-scores, and surfaces it all in an interactive dashboard. Tested with pytest and CI.",
+    wordmark: "Finance Data Pipeline", // shorter name for the homepage card preview
+    cardTag: "ETL · anomaly detection · dashboard",
+    status: "wip",
+    statusLabel: "In progress",
+    timeframe: "Jan 2026 – Present",
+    context: "Self-directed · learning data engineering by building",
+    image: null,
+    imageAlt: "",
+    liveUrl: null,
+    codeUrl: null,
+    privateRepo: false,
+    overview:
+      "I'm teaching myself data engineering the way I learn best — by building something real. This pipeline ingests, validates, and cleans 200+ transactions from CSV, stores them in a database, flags unusual spending, and surfaces everything in an interactive dashboard. I'm treating it like production software, with automated tests and continuous integration rather than a one-off script.",
+    contributions: [
+      "An ETL flow that ingests, validates, and cleans 200+ transactions from CSV and stores them in SQLite.",
+      "Data-quality checks for nulls, type enforcement, and duplicate removal.",
+      "Anomaly detection that flags unusual transactions using z-scores.",
+      "An interactive Plotly Dash dashboard to explore spending over time.",
+      "A pytest test suite and a GitHub Actions CI pipeline so changes stay reliable.",
+    ],
+    stack: ["Python", "pandas", "SQLite", "Plotly Dash", "pytest", "GitHub Actions"],
+    learnings: [
+      "Designing data flows that are reliable and repeatable, not just runnable once.",
+      "Writing tests and setting up CI/CD — habits that carry into any real codebase.",
+      "Directing my own learning: diagnosing what I don't know and closing the gap deliberately.",
+    ],
+  },
   {
     slug: "specusol",
     title: "Specusol — Solar Energy Market Dashboard",
     tagline: "Modeling surplus Texas solar energy as a tradeable asset — built in 36 hours.",
-    status: "live", // "live" or "wip"
+    summary: "Built in 36 hours at EnergyHack @ Georgia Tech (my first hackathon). I designed and built the ERCOT zone map and the supply/demand & daylight visualizations; my teammate built the stock tracker. Deployed on Render.",
+    status: "live",
     statusLabel: "Live",
     timeframe: "January 2026",
     context: "EnergyHack @ Georgia Tech · my first hackathon · team of 2 · built in 36 hours",
@@ -16,6 +144,7 @@ export const projects = [
       "Specusol dashboard showing the Houston ERCOT zone with a 24-hour supply and demand model",
     liveUrl: "https://energyhack2026.onrender.com",
     codeUrl: "https://github.com/cindy-muniz/EnergyHack2026",
+    privateRepo: false,
     overview:
       "EnergyHack challenged teams to turn an energy problem into something tangible in 36 hours. We built Specusol, a dashboard that models surplus solar energy in Texas's ERCOT grid as if it were a tradeable financial asset — pairing real grid zones with supply, demand, and solar-generation data so the surplus is easy to see and reason about. It was my first hackathon, my first time using Git and deploying to the web, and we shipped it live on Render by the deadline.",
     contributions: [
@@ -28,33 +157,6 @@ export const projects = [
       "How to collaborate in Git with a teammate — branching, merging two separate repos, and working through the messiness that comes with it.",
       "How to take a project all the way to a live, deployed URL, not just something that runs on my own laptop.",
       "How to scope tightly and make decisions quickly when the clock is the hardest constraint.",
-    ],
-  },
-  {
-    slug: "finance-pipeline",
-    title: "Personal Finance Data Pipeline",
-    tagline: "An end-to-end ETL pipeline that turns raw transactions into insight — with tests and CI.",
-    status: "wip",
-    statusLabel: "In progress",
-    timeframe: "2026 — in progress",
-    context: "Self-directed · learning data engineering by building",
-    image: null,
-    imageAlt: "",
-    liveUrl: null,
-    codeUrl: null,
-    overview:
-      "I'm teaching myself data engineering the way I learn best — by building something real. This pipeline ingests personal transaction data, validates and transforms it, stores it in a database, flags unusual spending, and surfaces everything in an interactive dashboard. I'm treating it like production software, with automated tests and continuous integration rather than a one-off script.",
-    contributions: [
-      "An ETL flow that ingests, validates, transforms, and stores transactions in SQLite.",
-      "Anomaly detection that flags unusual transactions using z-scores.",
-      "An interactive Plotly Dash dashboard to explore spending over time.",
-      "A pytest test suite and a GitHub Actions CI pipeline so changes stay reliable.",
-    ],
-    stack: ["Python", "pandas", "SQLite", "Plotly Dash", "pytest", "GitHub Actions"],
-    learnings: [
-      "Designing data flows that are reliable and repeatable, not just runnable once.",
-      "Writing tests and setting up CI/CD — habits that carry into any real codebase.",
-      "Directing my own learning: diagnosing what I don't know and closing the gap deliberately.",
     ],
   },
 ];
