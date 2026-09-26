@@ -5,7 +5,6 @@ import {
   Mail, MapPin, ExternalLink, GraduationCap, Heart, Globe, FileText, Sun, Moon,
 } from "lucide-react";
 import { projects } from "./projects/projectsData";
-
 const RESUME = "/Cindy_Muniz_Portfolio_Resume.pdf";
 
 const GithubIcon = ({ size = 16 }) => (
@@ -107,6 +106,13 @@ export default function Home() {
   .brand .star { color:var(--indigo); }
   .nav-links { display:flex; gap:22px; font-size:14.5px; color:var(--muted); align-items:center; }
   .nav-links a:hover { color:var(--rose); }
+  .brand { white-space:nowrap; }
+  @media (max-width:620px){
+    .nav-in { height:auto; flex-wrap:wrap; row-gap:4px; padding-top:10px; padding-bottom:10px; }
+    .nav-links { gap:11px; font-size:13px; flex-wrap:wrap; width:100%; }
+    .dm-btn { position:absolute; top:10px; right:22px; }
+    .sec { scroll-margin-top:122px; }
+  }
 
   .dm-btn {
     background:none; border:1px solid var(--pinkLine); border-radius:8px;
@@ -116,7 +122,7 @@ export default function Home() {
   }
   .dm-btn:hover { background:var(--blush); color:var(--rose); }
 
-  .dash { display:grid; grid-template-columns:248px 1fr; gap:16px; padding:30px 0 8px; }
+  .dash { display:grid; grid-template-columns:248px 1fr; gap:16px; padding-top:30px; padding-bottom:8px; }
   @media (max-width:780px){ .dash { grid-template-columns:1fr; } }
 
   .card { background:var(--white); border:1px solid var(--pinkLine); border-radius:16px; transition:background .25s, border-color .25s; }
@@ -204,7 +210,7 @@ export default function Home() {
                    text-transform:uppercase; letter-spacing:0.05em; font-size:10.5px;
                    min-width:72px; flex:none; }
 
-  .block { padding:46px 0 6px; }
+  .block { padding-top:46px; padding-bottom:6px; }
   .ktitle { font-size:13px; font-family:var(--mono); color:var(--rose); letter-spacing:0.05em;
             margin:0 0 16px; }
   .block h2 { font-size:22px; font-weight:600; margin:0 0 14px; letter-spacing:-0.01em; }
@@ -236,6 +242,9 @@ export default function Home() {
     .scrapbook { margin:14px auto 0; }
   }
   @media (prefers-reduced-motion: reduce){ .polaroid { transition:none; } }
+  .site .scrap-more { display:block; text-align:center; margin-top:18px; font-size:15px; color:var(--rose);
+                font-family:"Segoe Script","Bradley Hand","Comic Sans MS",cursive; }
+  .site .scrap-more:hover { text-decoration:underline; }
 
   .xp { position:relative; padding-left:26px; }
   .xp::before { content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px; background:var(--pinkLine); }
@@ -269,7 +278,7 @@ export default function Home() {
   .honor svg { color:var(--rose); }
 
   .foot { margin-top:50px; background:var(--blush); border-top:1px solid var(--pinkLine); transition:background .25s, border-color .25s; }
-  .foot-in { padding:38px 0 30px; }
+  .foot-in { padding-top:38px; padding-bottom:30px; }
   .foot h2 { font-size:22px; font-weight:600; margin:0 0 8px; color:var(--pinkTagTx); }
   .foot p { font-size:14.5px; color:var(--muted); margin:0 0 18px; max-width:460px; }
   .fbtns { display:flex; gap:11px; flex-wrap:wrap; }
@@ -302,6 +311,7 @@ export default function Home() {
             <a href="#about">about</a>
             <a href="#experience">experience</a>
             <Link href="/notes">notes</Link>
+            <Link href="/travels">travels</Link>
             <a href={RESUME} target="_blank" rel="noopener">résumé</a>
             <a href="#contact">contact</a>
             <button className="dm-btn" onClick={toggleDark} aria-label="Toggle dark mode">
@@ -426,6 +436,7 @@ export default function Home() {
             <figure className="polaroid"><img src="/scrapbook1.jpg" alt="Cindy at the Eiffel Tower in Paris, France" /><figcaption>Paris</figcaption></figure>
             <figure className="polaroid"><img src="/scrapbook2.jpg" alt="Cindy in Interlaken, Switzerland" /><figcaption>Interlaken</figcaption></figure>
             <figure className="polaroid"><img src="/scrapbook3.jpg" alt="Cindy in the Netherlands" /><figcaption>Netherlands</figcaption></figure>
+            <Link href="/travels" className="scrap-more">see more of my travels →</Link>
           </div>
         </div>
       </div>
