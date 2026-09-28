@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, Sun, Moon } from "lucide-react";
+import { ArrowLeft, Sun, Moon, ExternalLink } from "lucide-react";
 import { notes } from "./notesData";
 
 export default function NotesPage() {
@@ -62,6 +62,9 @@ export default function NotesPage() {
   .nts .note h2 { font-size:17px; font-weight:600; margin:0 0 9px; color:var(--ink); }
   .nts .note p { font-size:14.5px; color:var(--muted); margin:0 0 13px; }
   .nts:not(.dark) .note p { color:#3a3a37; }
+  .nts .link { display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:500;
+               color:var(--rose); margin:0 0 13px; }
+  .nts .link:hover { text-decoration:underline; }
   .nts .tags { display:flex; gap:7px; flex-wrap:wrap; }
   .nts .tag { font-size:11.5px; border-radius:999px; padding:2px 11px;
               background:var(--blueTagBg); color:var(--blueTagTx); }
@@ -94,6 +97,11 @@ export default function NotesPage() {
               <p className="date">{note.date}</p>
               <h2>{note.title}</h2>
               <p>{note.body}</p>
+              {note.link && (
+                <a className="link" href={note.link.href} target="_blank" rel="noopener noreferrer">
+                  {note.link.label} <ExternalLink size={14} />
+                </a>
+              )}
               {note.tags && note.tags.length > 0 && (
                 <div className="tags">
                   {note.tags.map((t) => <span className="tag" key={t}>{t}</span>)}

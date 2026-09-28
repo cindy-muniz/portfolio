@@ -343,6 +343,7 @@ export default function Home() {
             <div className="row"><span className="k">studying</span><span>CS 2340 Objects &amp; Design · CS 2110 Computer Organization</span></div>
             <div className="row"><span className="k">into</span><span>the globalization of technology</span></div>
             <div className="row"><span className="k">offscreen</span><span>community service &amp; music</span></div>
+            <div className="row"><span className="k">listening</span><span>&ldquo;Her&rdquo; · The American Dawn</span></div>
           </div>
         </div>
 

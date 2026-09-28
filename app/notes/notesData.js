@@ -1,5 +1,6 @@
 // Your build log. Add a new entry by copying one of these objects to the top.
 // Newest entries go first.
+// Optional: link: { href: "https://...", label: "Read the article" } adds a link below the entry.
 
 export const notes = [
   {
@@ -13,8 +14,9 @@ export const notes = [
     date: "Sept 2026",
     title: "Attended the Tapia Celebration of Diversity in Computing",
     body:
-      "I was selected as 1 of 17 Georgia Tech College of Computing students to receive a scholarship to attend the Tapia Conference (Sept 16–18). As a first-generation Latina student, being surrounded by a diverse, supportive community of computing professionals and students was unlike anything I'd experienced — we shared stories and made a space where we could be proud of our differences. The biggest takeaway: never be afraid to reach out — there are so many people who want to help students like us find success, and it starts with showing up. The Ken Kennedy Distinguished Lecture by Omar Florez on LatamGPT, a Latin American LLM, stuck with me; after helping so many Spanish-speaking families as a bilingual student assistant, I saw how tools like that can close real access gaps. I also did resume reviews at Google's booth and a resume workshop, and learned how much format and section order matter for ATS systems. The advice I'm carrying into my TA role this semester: always look for other perspectives, so every student feels represented. GT CoC is featuring my experience in a news article.",
+      "I was selected as 1 of 17 Georgia Tech College of Computing students to receive a scholarship to attend the Tapia Conference (Sept 16–18). As a first-generation Latina student, being surrounded by a diverse, supportive community of computing professionals and students was unlike anything I'd experienced — we shared stories and made a space where we could be proud of our differences. The biggest takeaway: never be afraid to reach out — there are so many people who want to help students like us find success, and it starts with showing up. The Ken Kennedy Distinguished Lecture by Omar Florez on LatamGPT, a Latin American LLM, stuck with me; after helping so many Spanish-speaking families as a bilingual student assistant, I saw how tools like that can close real access gaps. I also did resume reviews at Google's booth and a resume workshop, and learned how much format and section order matter for ATS systems. The advice I'm carrying into my TA role this semester: always look for other perspectives, so every student feels represented. GT Computing featured my experience in their news story on the conference.",
     tags: ["Conference", "Diversity", "Networking", "Professional development"],
+    link: { href: "https://www.cc.gatech.edu/news/gt-computing-students-find-community-opportunity-tapia-conference", label: "Read the GT Computing story" },
   },
   {
     date: "Sept 2026",
